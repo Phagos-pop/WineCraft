@@ -13,8 +13,7 @@ public class TimeManager
 
     public void AddWeek()
     { 
-        var dateTimeNew = dateTime.AddDays(7d);
-        dateTime = dateTimeNew;
+        dateTime = dateTime.AddDays(7d);
     }
 
 }

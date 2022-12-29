@@ -6,7 +6,7 @@ using System.Linq;
 
 public class TilemapManager : MonoBehaviour
 {
-    [SerializeField] private Tilemap tilemapPlant;
+    [SerializeField] private Tilemap tilemapFunc;
     [SerializeField] private List<Tile> tileList;
 
     private List<TileField> tileFields;
@@ -17,34 +17,34 @@ public class TilemapManager : MonoBehaviour
     {
         InitTileField();
 
-        Debug.Log("Init TilemapManager");
     }
 
     #region ToDo
+    // TODO: переделать инициализацию полей
     private Dictionary<Vector3Int, TileBase> FirstDict(int countOfTiles)
     {
         Dictionary<Vector3Int, TileBase> dict = new Dictionary<Vector3Int, TileBase>(countOfTiles)
         {
-            {new Vector3Int(-2,-4,0), tilemapPlant.GetTile(new Vector3Int(-2,-4,0))},
-            {new Vector3Int(-2,-5,0), tilemapPlant.GetTile(new Vector3Int(-2,-5,0))},
-            {new Vector3Int(-2,-6,0), tilemapPlant.GetTile(new Vector3Int(-2,-6,0))},
-            {new Vector3Int(-2,-7,0), tilemapPlant.GetTile(new Vector3Int(-2,-7,0))},
-            {new Vector3Int(-3,-4,0), tilemapPlant.GetTile(new Vector3Int(-3,-4,0))},
-            {new Vector3Int(-3,-5,0), tilemapPlant.GetTile(new Vector3Int(-3,-5,0))},
-            {new Vector3Int(-3,-6,0), tilemapPlant.GetTile(new Vector3Int(-3,-6,0))},
-            {new Vector3Int(-3,-7,0), tilemapPlant.GetTile(new Vector3Int(-3,-7,0))},
-            {new Vector3Int(-4,-4,0), tilemapPlant.GetTile(new Vector3Int(-4,-4,0))},
-            {new Vector3Int(-4,-5,0), tilemapPlant.GetTile(new Vector3Int(-4,-5,0))},
-            {new Vector3Int(-4,-6,0), tilemapPlant.GetTile(new Vector3Int(-4,-6,0))},
-            {new Vector3Int(-4,-7,0), tilemapPlant.GetTile(new Vector3Int(-4,-7,0))},
-            {new Vector3Int(-5,-4,0), tilemapPlant.GetTile(new Vector3Int(-5,-4,0))},
-            {new Vector3Int(-5,-5,0), tilemapPlant.GetTile(new Vector3Int(-5,-5,0))},
-            {new Vector3Int(-5,-6,0), tilemapPlant.GetTile(new Vector3Int(-5,-6,0))},
-            {new Vector3Int(-5,-7,0), tilemapPlant.GetTile(new Vector3Int(-5,-7,0))},
-            {new Vector3Int(-6,-4,0), tilemapPlant.GetTile(new Vector3Int(-6,-4,0))},
-            {new Vector3Int(-6,-5,0), tilemapPlant.GetTile(new Vector3Int(-6,-5,0))},
-            {new Vector3Int(-6,-6,0), tilemapPlant.GetTile(new Vector3Int(-6,-6,0))},
-            {new Vector3Int(-6,-7,0), tilemapPlant.GetTile(new Vector3Int(-6,-7,0))}
+            {new Vector3Int(-2,-4,0), tilemapFunc.GetTile(new Vector3Int(-2,-4,0))},
+            {new Vector3Int(-2,-5,0), tilemapFunc.GetTile(new Vector3Int(-2,-5,0))},
+            {new Vector3Int(-2,-6,0), tilemapFunc.GetTile(new Vector3Int(-2,-6,0))},
+            {new Vector3Int(-2,-7,0), tilemapFunc.GetTile(new Vector3Int(-2,-7,0))},
+            {new Vector3Int(-3,-4,0), tilemapFunc.GetTile(new Vector3Int(-3,-4,0))},
+            {new Vector3Int(-3,-5,0), tilemapFunc.GetTile(new Vector3Int(-3,-5,0))},
+            {new Vector3Int(-3,-6,0), tilemapFunc.GetTile(new Vector3Int(-3,-6,0))},
+            {new Vector3Int(-3,-7,0), tilemapFunc.GetTile(new Vector3Int(-3,-7,0))},
+            {new Vector3Int(-4,-4,0), tilemapFunc.GetTile(new Vector3Int(-4,-4,0))},
+            {new Vector3Int(-4,-5,0), tilemapFunc.GetTile(new Vector3Int(-4,-5,0))},
+            {new Vector3Int(-4,-6,0), tilemapFunc.GetTile(new Vector3Int(-4,-6,0))},
+            {new Vector3Int(-4,-7,0), tilemapFunc.GetTile(new Vector3Int(-4,-7,0))},
+            {new Vector3Int(-5,-4,0), tilemapFunc.GetTile(new Vector3Int(-5,-4,0))},
+            {new Vector3Int(-5,-5,0), tilemapFunc.GetTile(new Vector3Int(-5,-5,0))},
+            {new Vector3Int(-5,-6,0), tilemapFunc.GetTile(new Vector3Int(-5,-6,0))},
+            {new Vector3Int(-5,-7,0), tilemapFunc.GetTile(new Vector3Int(-5,-7,0))},
+            {new Vector3Int(-6,-4,0), tilemapFunc.GetTile(new Vector3Int(-6,-4,0))},
+            {new Vector3Int(-6,-5,0), tilemapFunc.GetTile(new Vector3Int(-6,-5,0))},
+            {new Vector3Int(-6,-6,0), tilemapFunc.GetTile(new Vector3Int(-6,-6,0))},
+            {new Vector3Int(-6,-7,0), tilemapFunc.GetTile(new Vector3Int(-6,-7,0))}
 
         };
         return dict;
@@ -54,26 +54,26 @@ public class TilemapManager : MonoBehaviour
     {
         Dictionary<Vector3Int, TileBase> dict = new Dictionary<Vector3Int, TileBase>(countOfTiles)
         {
-            {new Vector3Int(-2,-9,0), tilemapPlant.GetTile(new Vector3Int(-2,-9,0))},
-            {new Vector3Int(-2,-10,0), tilemapPlant.GetTile(new Vector3Int(-2,-10,0))},
-            {new Vector3Int(-2,-11,0), tilemapPlant.GetTile(new Vector3Int(-2,-11,0))},
-            {new Vector3Int(-2,-12,0), tilemapPlant.GetTile(new Vector3Int(-2,-12,0))},
-            {new Vector3Int(-3,-9,0), tilemapPlant.GetTile(new Vector3Int(-3,-9,0))},
-            {new Vector3Int(-3,-10,0), tilemapPlant.GetTile(new Vector3Int(-3,-10,0))},
-            {new Vector3Int(-3,-11,0), tilemapPlant.GetTile(new Vector3Int(-3,-11,0))},
-            {new Vector3Int(-3,-12,0), tilemapPlant.GetTile(new Vector3Int(-3,-12,0))},
-            {new Vector3Int(-4,-9,0), tilemapPlant.GetTile(new Vector3Int(-4,-9,0))},
-            {new Vector3Int(-4,-10,0), tilemapPlant.GetTile(new Vector3Int(-4,-10,0))},
-            {new Vector3Int(-4,-11,0), tilemapPlant.GetTile(new Vector3Int(-4,-11,0))},
-            {new Vector3Int(-4,-12,0), tilemapPlant.GetTile(new Vector3Int(-4,-12,0))},
-            {new Vector3Int(-5,-9,0), tilemapPlant.GetTile(new Vector3Int(-5,-9,0))},
-            {new Vector3Int(-5,-10,0), tilemapPlant.GetTile(new Vector3Int(-5,-10,0))},
-            {new Vector3Int(-5,-11,0), tilemapPlant.GetTile(new Vector3Int(-5,-11,0))},
-            {new Vector3Int(-5,-12,0), tilemapPlant.GetTile(new Vector3Int(-5,-12,0))},
-            {new Vector3Int(-6,-9,0), tilemapPlant.GetTile(new Vector3Int(-6,-9,0))},
-            {new Vector3Int(-6,-10,0), tilemapPlant.GetTile(new Vector3Int(-6,-10,0))},
-            {new Vector3Int(-6,-11,0), tilemapPlant.GetTile(new Vector3Int(-6,-11,0))},
-            {new Vector3Int(-6,-12,0), tilemapPlant.GetTile(new Vector3Int(-6,-12,0))}
+            {new Vector3Int(-2,-9,0), tilemapFunc.GetTile(new Vector3Int(-2,-9,0))},
+            {new Vector3Int(-2,-10,0), tilemapFunc.GetTile(new Vector3Int(-2,-10,0))},
+            {new Vector3Int(-2,-11,0), tilemapFunc.GetTile(new Vector3Int(-2,-11,0))},
+            {new Vector3Int(-2,-12,0), tilemapFunc.GetTile(new Vector3Int(-2,-12,0))},
+            {new Vector3Int(-3,-9,0), tilemapFunc.GetTile(new Vector3Int(-3,-9,0))},
+            {new Vector3Int(-3,-10,0), tilemapFunc.GetTile(new Vector3Int(-3,-10,0))},
+            {new Vector3Int(-3,-11,0), tilemapFunc.GetTile(new Vector3Int(-3,-11,0))},
+            {new Vector3Int(-3,-12,0), tilemapFunc.GetTile(new Vector3Int(-3,-12,0))},
+            {new Vector3Int(-4,-9,0), tilemapFunc.GetTile(new Vector3Int(-4,-9,0))},
+            {new Vector3Int(-4,-10,0), tilemapFunc.GetTile(new Vector3Int(-4,-10,0))},
+            {new Vector3Int(-4,-11,0), tilemapFunc.GetTile(new Vector3Int(-4,-11,0))},
+            {new Vector3Int(-4,-12,0), tilemapFunc.GetTile(new Vector3Int(-4,-12,0))},
+            {new Vector3Int(-5,-9,0), tilemapFunc.GetTile(new Vector3Int(-5,-9,0))},
+            {new Vector3Int(-5,-10,0), tilemapFunc.GetTile(new Vector3Int(-5,-10,0))},
+            {new Vector3Int(-5,-11,0), tilemapFunc.GetTile(new Vector3Int(-5,-11,0))},
+            {new Vector3Int(-5,-12,0), tilemapFunc.GetTile(new Vector3Int(-5,-12,0))},
+            {new Vector3Int(-6,-9,0), tilemapFunc.GetTile(new Vector3Int(-6,-9,0))},
+            {new Vector3Int(-6,-10,0), tilemapFunc.GetTile(new Vector3Int(-6,-10,0))},
+            {new Vector3Int(-6,-11,0), tilemapFunc.GetTile(new Vector3Int(-6,-11,0))},
+            {new Vector3Int(-6,-12,0), tilemapFunc.GetTile(new Vector3Int(-6,-12,0))}
 
         };
         return dict;
@@ -107,7 +107,7 @@ public class TilemapManager : MonoBehaviour
             {
                 foreach (var item in Field.listOfTiles)
                 {
-                    tilemapPlant.SetTile(item, tileList[(int)tileType]);
+                    tilemapFunc.SetTile(item, tileList[(int)tileType]);
                     Field.dictOfTiles[item] = tileList[(int)tileType];
                 }
             }
@@ -128,9 +128,9 @@ public class TilemapManager : MonoBehaviour
 
     public bool CheckTile(Vector3Int sellpos)
     {
-        if (tilemapPlant.HasTile(sellpos))
+        if (tilemapFunc.HasTile(sellpos))
         {
-            if (tileList.Contains(tilemapPlant.GetTile(sellpos)))
+            if (tileList.Contains(tilemapFunc.GetTile(sellpos)))
             {
                 return true;
             }
@@ -140,11 +140,9 @@ public class TilemapManager : MonoBehaviour
 
     public Vector3Int GetSellPosition(Vector3 clickWorldPosition)
     {   
-        Vector3Int sellPosition = tilemapPlant.WorldToCell(clickWorldPosition);
+        Vector3Int sellPosition = tilemapFunc.WorldToCell(clickWorldPosition);
 
         sellPosition.z = 0;
-
-        Debug.Log(sellPosition);
 
         return sellPosition;
     }

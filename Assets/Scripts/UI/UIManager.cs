@@ -16,8 +16,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Button harvestButton;
 
     private int grapeCount;
-
     private FieldData currentFieldData;
+
+    public bool panelNotOpen;
 
     public event Action ClosePanelEvent;
     public event Action<int> AddSeemEvent;
@@ -28,11 +29,12 @@ public class UIManager : MonoBehaviour
     {
         dateText.text = "Date " + dateTime.ToShortDateString();
         grapeCountText.text = "grape count " + grapeCount;
+        panelNotOpen = true;
     }
 
     public void ShowFieldPanel(FieldData fieldData)
     {
-        Debug.Log("fieldData.numberOfField" + fieldData.numberOfField);
+        panelNotOpen = false;
         if (fieldData.level > 0)
         {
             addSeemButton.gameObject.SetActive(false);
@@ -60,7 +62,7 @@ public class UIManager : MonoBehaviour
         levelText.text = "Level of Field " + currentFieldData.level;
     }
 
-    public void AddExpi()
+    public void AddSeemToField()
     {
         addSeemButton.gameObject.SetActive(false);
         AddSeemEvent?.Invoke(currentFieldData.numberOfField);
@@ -69,6 +71,7 @@ public class UIManager : MonoBehaviour
 
     public void ClosePanel()
     {
+        panelNotOpen = true;
         fieldPanel.gameObject.SetActive(false);
         nextWeekButton.gameObject.SetActive(true);
         ClosePanelEvent?.Invoke();
@@ -84,7 +87,7 @@ public class UIManager : MonoBehaviour
         dateText.text = "Date " + dateTime.ToShortDateString();
     }
 
-    public void Harvest()
+    public void HarvestField()
     {
         harvestButton.gameObject.SetActive(false);
         grapeCount += 60;

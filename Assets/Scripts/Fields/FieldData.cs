@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class FieldData
 {
-    
     public int numberOfField;
     public int level;
     public int experience;

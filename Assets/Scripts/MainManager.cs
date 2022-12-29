@@ -5,20 +5,21 @@ using UnityEngine.Tilemaps;
 
 public class MainManager : MonoBehaviour
 {
-    private InputSystem inputSystem;
-
-    private UIManager uIManager;
-    private TilemapManager tilemapManager;
+    [SerializeField] private InputSystem inputSystem;
+    [SerializeField] private UIManager uIManager;
+    [SerializeField] private TilemapManager tilemapManager;
     private FieldManager fieldManager;
     private TimeManager timeManager;
 
-    private bool panelNotOpen;
 
     private void Start()
     {
-        panelNotOpen = true;
-
         InitManagers();
+        InitCallback();
+    }
+
+    private void InitCallback()
+    {
         uIManager.AddSeemEvent += UIManager_AddSeem;
         fieldManager.FieldLevelApp += FieldManager_FieldLevelApp;
         uIManager.AddWeekEvent += UIManager_AddWeekEvent;
@@ -39,12 +40,9 @@ public class MainManager : MonoBehaviour
 
     private void InitManagers()
     {
-        inputSystem = this.GetComponent<InputSystem>();
         timeManager = new TimeManager();
-        tilemapManager = this.GetComponent<TilemapManager>();
-        tilemapManager.Init();
-        uIManager = this.GetComponent<UIManager>();
         fieldManager = new FieldManager();
+        tilemapManager.Init();        
         fieldManager.Init();
         timeManager.Init();
         uIManager.Init(timeManager.dateTime);
@@ -54,19 +52,17 @@ public class MainManager : MonoBehaviour
     private void InputSystem_ClickPosEvent(Vector3 clickPos)
     {
         Vector3Int sellPosition = tilemapManager.GetSellPosition(clickPos);
-        if (tilemapManager.CheckTile(sellPosition) && panelNotOpen)
+        if (tilemapManager.CheckTile(sellPosition) && uIManager.panelNotOpen)
         {
             inputSystem.SetCameraStaticBehevior();
             int currentField = tilemapManager.GetField(sellPosition);
             var fieldData = fieldManager.GetFieldData(currentField);
             uIManager.ShowFieldPanel(fieldData);
-            panelNotOpen = false;
         }
     }
 
     private void UIManager_ClosePanelEvent()
     {
-        panelNotOpen = true;
         inputSystem.SetCameraMoveBehevior();
     }
 
@@ -94,6 +90,5 @@ public class MainManager : MonoBehaviour
         tilemapManager.ReplaceTile(numberOfField, GroundTileType.GroundWithSeem);
     }
     #endregion
-
 
 }
